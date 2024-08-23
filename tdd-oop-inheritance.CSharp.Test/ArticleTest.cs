@@ -5,19 +5,18 @@ namespace tdd_oop_inheritance.CSharp.Test
 {
     class ArticleTest
     {
+        private Author _author = new("John Doe", "john@doe.com", "https://doe.com");
         [Test]
         public void shouldCheckOutIfAvailable()
             {
-                Author author = new("John Doe");
-                Article article = new ("JUnit Rocks", author);
+                Article article = new ("JUnit Rocks", _author);
                 Assert.AreEqual("item has been checked out", article.CheckOut());
             }
 
         [Test]
         public void shouldDeclineIfNotAvailableToCheckout()
             {
-                Author author = new("John Doe");
-                Article article = new ("JUnit Rocks", author);
+                Article article = new ("JUnit Rocks", _author);
                 article.CheckOut();
 
                 Assert.AreEqual("item is currently on loan", article.CheckOut());
@@ -26,8 +25,7 @@ namespace tdd_oop_inheritance.CSharp.Test
         [Test]
         public void shouldCheckInIfOnLoan()
             {
-                Author author = new("John Doe");
-                Article article = new ("JUnit Rocks", author);
+                Article article = new ("JUnit Rocks", _author);
                 article.CheckOut();
 
                 Assert.AreEqual("item has been checked in", article.CheckIn());
@@ -36,8 +34,7 @@ namespace tdd_oop_inheritance.CSharp.Test
         [Test]
         public void shouldDeclineCheckInIfNotOnLoan()
             {
-                Author author = new("John Doe");
-                Article article = new ("JUnit Rocks", author);
+                Article article = new ("JUnit Rocks", _author);
 
                 Assert.AreEqual("item is not currently on loan", article.CheckIn());
             }
