@@ -8,34 +8,38 @@ namespace tdd_oop_inheritance.CSharp.Test
         [Test]
         public void shouldCheckOutIfAvailable()
         {
-            Book book = new Book("JUnit Rocks");
-            Assert.AreEqual("item has been checked out", book.checkOut());
+            Author author = new("John Doe");
+            Book book = new ("JUnit Rocks", author);
+            Assert.AreEqual("item has been checked out", book.CheckOut());
         }
 
         [Test]
         public void shouldDeclineIfNotAvailableToCheckout()
         {
-            Book book = new Book("JUnit Rocks");
-            book.checkOut();
+            Author author = new("John Doe");
+            Book book = new ("JUnit Rocks", author);
+            book.CheckOut();
 
-            Assert.AreEqual("item is currently on loan", book.checkOut());
+            Assert.AreEqual("item is currently on loan", book.CheckOut());
         }
 
         [Test]
         public void shouldCheckInIfOnLoan()
         {
-            Book book = new Book("JUnit Rocks");
-            book.checkOut();
+            Author author = new("John Doe");
+            Book book = new ("JUnit Rocks", author);
+            book.CheckOut();
 
-            Assert.AreEqual("item has been checked in", book.checkIn());
+            Assert.AreEqual("item has been checked in", book.CheckIn());
         }
 
         [Test]
         public void shouldDeclineCheckInIfNotOnLoan()
         {
-            Book book = new Book("JUnit Rocks");
+            Author author = new("John Doe");
+            Book book = new ("JUnit Rocks", author);
 
-            Assert.AreEqual("item is not currently on loan", book.checkIn());
+            Assert.AreEqual("item is not currently on loan", book.CheckIn());
         }
     }
 }
